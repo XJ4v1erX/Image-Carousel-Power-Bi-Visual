@@ -10,13 +10,14 @@
         "name": "measure",
         "kind": "Measure"
       }
-    ],"privileges": [
+    ],
+    "privileges": [
       {
         "name": "WebAccess",
         "essential": true,
         "parameters": ["*"]
       }
-    ],  
+    ],
     "dataViewMappings": [
       {
         "conditions": [
@@ -42,21 +43,37 @@
         }
       }
     ],
-  
     "objects": {
-      "behavior": {
-        "displayName": "Comportamiento",
-        "properties": {
-          "autoSlide": {
-            "displayName": "Deslizamiento automático",
-            "type": { "bool": true }
-          },
-          "interval": {
-            "displayName": "Intervalo auto-slide (ms)",
-            "type": { "numeric": true }
+        "behavior": {
+          "displayName": "Comportamiento",
+          "properties": {
+            "autoSlide": {
+              "displayName": "Auto slide",
+              "type": { "bool": true }
+            },
+            "hoverToZoom": {
+              "displayName": "Hover to zoom",
+              "type": { "bool": true }
+            },
+            "randomize": {
+              "displayName": "Sort random on load",
+              "type": { "bool": true }
+            },
+            "imageCount": {
+              "displayName": "Image count",
+              "type": { "numeric": true }
+            },
+            "interval": {
+              "displayName": "Interval",
+              "type": { "numeric": true }
+            },
+            "spaceBetween": {
+              "displayName": "Space between images",
+              "type": { "numeric": true }
+            }
           }
         }
-      }
     }
-  }
+}
+
   

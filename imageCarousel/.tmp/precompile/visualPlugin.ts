@@ -5,8 +5,8 @@ import VisualConstructorOptions = powerbiVisualsApi.extensibility.visual.VisualC
 import DialogConstructorOptions = powerbiVisualsApi.extensibility.visual.DialogConstructorOptions;
 var powerbiKey: any = "powerbi";
 var powerbi: any = window[powerbiKey];
-var imageCarousel841D08754064411FB94209D64C84C32B_DEBUG: IVisualPlugin = {
-    name: 'imageCarousel841D08754064411FB94209D64C84C32B_DEBUG',
+var imageCarousel841D08754064411FB94209D64C84C32B: IVisualPlugin = {
+    name: 'imageCarousel841D08754064411FB94209D64C84C32B',
     displayName: 'ImageCarousel',
     class: 'Visual',
     apiVersion: '5.3.0',
@@ -27,6 +27,6 @@ var imageCarousel841D08754064411FB94209D64C84C32B_DEBUG: IVisualPlugin = {
 if (typeof powerbi !== "undefined") {
     powerbi.visuals = powerbi.visuals || {};
     powerbi.visuals.plugins = powerbi.visuals.plugins || {};
-    powerbi.visuals.plugins["imageCarousel841D08754064411FB94209D64C84C32B_DEBUG"] = imageCarousel841D08754064411FB94209D64C84C32B_DEBUG;
+    powerbi.visuals.plugins["imageCarousel841D08754064411FB94209D64C84C32B"] = imageCarousel841D08754064411FB94209D64C84C32B;
 }
-export default imageCarousel841D08754064411FB94209D64C84C32B_DEBUG;
+export default imageCarousel841D08754064411FB94209D64C84C32B;
