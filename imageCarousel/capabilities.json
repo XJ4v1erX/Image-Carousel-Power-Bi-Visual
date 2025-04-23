@@ -1,0 +1,62 @@
+{
+    "dataRoles": [
+      {
+        "displayName": "Image URL",
+        "name": "imageUrl",
+        "kind": "Grouping"
+      },
+      {
+        "displayName": "Sequence",
+        "name": "measure",
+        "kind": "Measure"
+      }
+    ],"privileges": [
+      {
+        "name": "WebAccess",
+        "essential": true,
+        "parameters": ["*"]
+      }
+    ],  
+    "dataViewMappings": [
+      {
+        "conditions": [
+          {
+            "measure": { "max": 1 },
+            "imageUrl": { "min": 1, "max": 1 }
+          }
+        ],
+        "categorical": {
+          "categories": {
+            "select": [
+              { "for": { "in": "imageUrl" } }
+            ],
+            "dataReductionAlgorithm": {
+              "top": { "count": 30000 }
+            }
+          },
+          "values": {
+            "select": [
+              { "bind": { "to": "measure" } }
+            ]
+          }
+        }
+      }
+    ],
+  
+    "objects": {
+      "behavior": {
+        "displayName": "Comportamiento",
+        "properties": {
+          "autoSlide": {
+            "displayName": "Deslizamiento automático",
+            "type": { "bool": true }
+          },
+          "interval": {
+            "displayName": "Intervalo auto-slide (ms)",
+            "type": { "numeric": true }
+          }
+        }
+      }
+    }
+  }
+  
