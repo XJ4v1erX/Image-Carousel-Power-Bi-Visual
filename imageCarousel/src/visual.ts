@@ -5,6 +5,7 @@ import VisualUpdateOptions = powerbi.extensibility.visual.VisualUpdateOptions;
 import { VisualSettings } from "./settings";
 import { FormattingSettingsService } from "powerbi-visuals-utils-formattingmodel";
 import "../style/visual.less";
+import IVisualHost = powerbi.extensibility.visual.IVisualHost;
 
 
 export class Visual {
@@ -14,11 +15,13 @@ export class Visual {
     private options: VisualUpdateOptions;
     private formattingSettingsService = new FormattingSettingsService();
     private visualSettings: VisualSettings;
+    private host: IVisualHost;
 
  
     constructor(options: VisualConstructorOptions) {
         this.container = document.createElement('div');
         this.container.id = 'carousel-container';
+        this.host = options.host;
         options.element.appendChild(this.container);
     }
 
@@ -36,12 +39,14 @@ export class Visual {
 
         const categorical = dataView.categorical;
         const imageUrls = categorical.categories[0].values as string[];
-        const sequences = categorical.values?.[0]?.values as number[] || [];
+        const categoryColumns = categorical.categories;
+        const links = categoryColumns.length > 1 ? categoryColumns[1].values as string[] : [];
+        
 
         const carouselImages = imageUrls.map((url, index) => ({
             url,
-            sequence: sequences[index] || index
-        })).sort((a, b) => a.sequence - b.sequence);
+            link: links[index]
+        }));
 
         this.renderCarousel(carouselImages);
     }
@@ -92,8 +97,16 @@ export class Visual {
                     const x = ((e.clientX - rect.left) / rect.width) * 100;
                     const y = ((e.clientY - rect.top) / rect.height) * 100;
                     imgElem.style.transformOrigin = `${x}% ${y}%`;
+                    e.stopPropagation();
                 });
             }
+
+            imgElem.addEventListener("click", (e) => {
+                e.stopPropagation();
+                if (image.link && typeof image.link === "string" && image.link.trim().startsWith("http")) {
+                    this.host.launchUrl(image.link);
+                }
+            });
     
             wrapper.appendChild(imgElem);
             group.appendChild(wrapper);

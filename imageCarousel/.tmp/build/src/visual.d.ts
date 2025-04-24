@@ -9,6 +9,7 @@ export declare class Visual {
     private options;
     private formattingSettingsService;
     private visualSettings;
+    private host;
     constructor(options: VisualConstructorOptions);
     update(options: VisualUpdateOptions): void;
     getFormattingModel(): powerbi.visuals.FormattingModel;

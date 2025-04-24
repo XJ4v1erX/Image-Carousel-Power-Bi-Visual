@@ -6,9 +6,9 @@
         "kind": "Grouping"
       },
       {
-        "displayName": "Sequence",
-        "name": "measure",
-        "kind": "Measure"
+        "displayName": "Link",
+        "name": "link",
+        "kind": "Grouping"
       }
     ],
     "privileges": [
@@ -22,23 +22,19 @@
       {
         "conditions": [
           {
-            "measure": { "max": 1 },
-            "imageUrl": { "min": 1, "max": 1 }
+            "imageUrl": { "min": 1, "max": 1 },
+            "link": { "min": 0, "max": 1 }
           }
         ],
         "categorical": {
           "categories": {
             "select": [
-              { "for": { "in": "imageUrl" } }
+              { "for": { "in": "imageUrl" } },
+              { "for": { "in": "link" } }
             ],
             "dataReductionAlgorithm": {
               "top": { "count": 30000 }
             }
-          },
-          "values": {
-            "select": [
-              { "bind": { "to": "measure" } }
-            ]
           }
         }
       }
